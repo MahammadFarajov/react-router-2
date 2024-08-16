@@ -4,6 +4,8 @@ import Homepage from "./pages/home";
 import Productspage from "./pages/products";
 import SingleProduct from "./pages/single-product";
 import AddProduct from "./pages/add-product";
+import { Toaster } from "react-hot-toast";
+import EditProduct from "./pages/edit-product";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -14,6 +16,7 @@ export default function App() {
         { path: "/", element: <Homepage /> },
         { path: "/products", element: <Productspage /> },
         { path: "/products/:productId", element: <SingleProduct /> },
+        { path: "/products/:productId/edit-product", element: <EditProduct /> },
         { path: "/add-product", element: <AddProduct /> },
         { path: "/about", element: <Productspage /> },
         { path: "/contacts", element: <Productspage /> },

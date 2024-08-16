@@ -7,7 +7,7 @@ function Homepage() {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    axios.get("https://localhost:3000/products").then((res) => {
+    axios.get("http://localhost:3000/products").then((res) => {
       setProducts(res.data);
     });
   }, []);

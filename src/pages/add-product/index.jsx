@@ -2,7 +2,10 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { Input } from 'postcss'
 import React from 'react'
+import toast from 'react-hot-toast'
 import * as Yup from "yup"
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function AddProduct() {
     const formik = useFormik({
@@ -26,6 +29,10 @@ function AddProduct() {
             })
         }
     })
+    const handleChangeDescription = (e) => {
+        formik.setFieldValue("description", e)
+    }
+    if (!product) return <h1>Loading...</h1>
   return (
     <div className='container'>
         <div className="w-1/2 mt-12 rounded-md p-5 flex flex-col items-center bg-white overflow-auto h-[700px] shadow-lg mx-auto">
@@ -37,7 +44,13 @@ function AddProduct() {
                 {formik.errors.title && <h1>{formik.errors.title}</h1>}
                 <Input label={"Price"} error={formik.errors.price} onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} type={"number"}/>
                 <Input label={"Category"} error={formik.errors.title} onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} type={"text"}/>
-                <Input label={"Description"} error={formik.errors.description} onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} type={"text"}/>
+                {/* <Input label={"Description"} error={formik.errors.description} onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} type={"text"}/> */}
+                <ReactQuill 
+                    theme='snow'
+                    className='w-full mb-12 block overflow-auto'
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                />
                 <Input label={"Image"} onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} type={"url"}/>
                 <button type='submit' className='bg-blue-400 text-xl py-3 mt-2 px-5 rounded-lg text-white font-semibold'>
                     Add
